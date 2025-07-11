@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../output.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <title>Gallery - Editing Image</title>
+</head>
+<body>
+    <div class="w-screen h-screen bg-white"> 
+        <div class="h-[92px] bg-white border-b-[1px] border-b-black/30 flex items-center justify-between px-4"> <!--Esse é o header --> 
+            <div class="flex justify-center items-center">
+                <a href="../index.html">
+                    <i class='mr-5 p-1 border border-black/40 rounded-4xl bx bx-home cursor-pointer'></i> 
+                </a>
+                <div>
+                    <h1 class="font-bold text-3xl">Editing Images</h1>
+                    <p class="font-normal text-black/70">Edit and customize your photos</p>
+                </div>
+            </div>
+        </div>
+
+        <section class="flex mt-10 p-5 justify-center items-center gap-3">
+            <div class="w-180 h-110">
+                <label class="cursor-pointer block font-semibold text-2xl content-center text-center w-180 h-110 border-2 border-dashed border-black/40 rounded" for="imageInput">
+                    <input class="hidden" type="file" accept="image/*" name="imageInput" id="imageInput">
+                    <span id="picture"></span>
+                </label>
+            </div>
+            <div class="w-100 h-110 border border-black/40 rounded">
+                <div class="p-5 flex gap-2">
+                    <i class='text-2xl mt-1 bx  bx-file'  ></i> 
+                    <h1 class="font-bold text-2xl">Image Details</h1>
+                </div>
+                <div class="p-5 flex flex-col gap-2">
+                    <form class="flex flex-col gap-2">
+                        <label class="font-medium" for="imageName">Title</label>
+                        <input required class="border border-black/40 rounded p-2" type="text" name="imageName" id="imageName" placeholder="Enter image title">
+
+                        <label class="font-medium" for="imageName">Category</label>
+                        <select required class="border border-black/40 rounded p-2" name="imageCategory" id="imageCategory">
+                            <option value="">Select category</option>
+                            <option value="Nature">Nature</option>
+                            <option value="Architecture">Architecture</option>
+                            <option value="People">People</option>
+                            <option value="Technology">Technology</option>
+                            <option value="Art">Art</option>
+                        </select>
+
+                        <label class="font-medium" for="imageDescription">Description</label>
+                        <input required class="border border-black/40 rounded p-2" type="text" name="imageDescription" id="imageDescription" placeholder="Describe your image">
+                    
+                        <div class="flex justify-center items-center mt-6">
+                            <button class="cursor-pointer bg-black rounded text-white px-5 py-2" type="submit">Upload Image</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>
