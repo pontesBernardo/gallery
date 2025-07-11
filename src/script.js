@@ -79,3 +79,30 @@ function limparFormulario() {
   currentImageSrc = "";
   image.innerHTML = imageText;
 }
+
+function renderizarGaleria() {
+  // Pega o array do localStorage (ou um array vazio se não tiver nada)
+  const galleryData = JSON.parse(localStorage.getItem("galleryData")) || [];
+
+  // Seleciona o container onde vai renderizar os cards da galeria
+  const containerGaleria = document.getElementById("gallery");
+  containerGaleria.innerHTML = ""; // limpa o container antes
+
+  // Para cada item do galleryData, cria um card com as informações e adiciona no container
+  galleryData.forEach((item) => {
+    const card = document.createElement("div");
+    card.className = "w-100 h-[270px] bg-slate-200 rounded-2xl shadow-xl p-4 mb-4";
+
+    card.innerHTML = `
+      <img src="${item.image}" alt="${item.title}" class="w-full h-40 object-cover rounded-xl mb-2" />
+      <h3 class="font-semibold text-lg mb-1">${item.title}</h3>
+      <p class="text-sm text-gray-700 mb-1">${item.category}</p>
+      <p class="text-xs text-gray-600">${item.description}</p>
+      <p class="text-xs text-gray-500 mt-2">${item.date}</p>
+    `;
+
+    containerGaleria.appendChild(card);
+  });
+}
+
+window.document.addEventListener('load', renderizarGaleria())
