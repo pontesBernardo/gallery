@@ -85,24 +85,36 @@ function renderizarGaleria() {
   const galleryData = JSON.parse(localStorage.getItem("galleryData")) || [];
 
   // Seleciona o container onde vai renderizar os cards da galeria
-  const containerGaleria = document.getElementById("gallery");
+  const containerGaleria = GetElementID('gallery');
   containerGaleria.innerHTML = ""; // limpa o container antes
 
   // Para cada item do galleryData, cria um card com as informações e adiciona no container
   galleryData.forEach((item) => {
     const card = document.createElement("div");
-    card.className = "w-100 h-[270px] bg-slate-200 rounded-2xl shadow-xl p-4 mb-4";
+    card.className = "group w-100 h-[270px] bg-slate-200 rounded-2xl shadow-xl transform transition duration-200 hover:shadow-2xl";
 
     card.innerHTML = `
-      <img src="${item.image}" alt="${item.title}" class="w-full h-40 object-cover rounded-xl mb-2" />
-      <h3 class="font-semibold text-lg mb-1">${item.title}</h3>
-      <p class="text-sm text-gray-700 mb-1">${item.category}</p>
-      <p class="text-xs text-gray-600">${item.description}</p>
-      <p class="text-xs text-gray-500 mt-2">${item.date}</p>
+      <div class="relative w-100 h-[195px] bg-black/10 rounded-2xl rounded-b-none overflow-hidden">
+          <div class="absolute top-2 left-2 z-20">
+              <h1 class="px-3 py-1 font-semibold text-[12px] bg-slate-100 rounded-full transition duration-200 hover:bg-slate-200">${item.category}</h1>
+          </div>
+          <div class="absolute inset-0 bg-black/50 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition duration-300 z-10">
+              <button class="w-10 h-10 p-1 bg-white text-black text-sm rounded-4xl shadow hover:bg-gray-100 transition"><i class='bx  bx-image'  ></i> </button>
+              <button class="w-10 h-10 p-1 bg-white text-black text-sm rounded-4xl shadow hover:bg-gray-100 transition"><i class="bx bx-download"></i></button>
+          </div>
+          <img class="rounded-t-2xl w-full h-full object-cover" src="${item.image}" alt="${item.title}">
+      </div>
+      <div class="w-100 h-[75px] bg-white rounded-b-2xl">
+          <div class="p-3">
+              <h1 class="font-bold text-lg">${item.title}</h1>
+              <p class="text-black/70"><i class="bx bx-calendar-alt"></i> ${item.date}</p>
+          </div>
+      </div>
     `;
+
 
     containerGaleria.appendChild(card);
   });
 }
 
-window.document.addEventListener('load', renderizarGaleria())
+document.addEventListener('DOMContentLoaded', renderizarGaleria);
